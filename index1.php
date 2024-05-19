@@ -7,7 +7,7 @@
 
   <!-- css -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 
   <!-- css icons -->
 
@@ -17,6 +17,8 @@
 <body>
 
   <header>
+
+  <!--             Sidebar               -->
     <div class="menu">
       <h1>Playlist</h1>
       <div class="playlist">
@@ -117,8 +119,11 @@
       </div>
     </div>
 
-
+<!--             bagian utama           -->
     <div class="lagu">lagu</div>
+    
+   
+   <!--            bagian play music        -->
     <div class="play">play</div>
 
 
