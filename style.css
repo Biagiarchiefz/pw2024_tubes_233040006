@@ -1,0 +1,194 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  font-family: 'Poppins', sans-serif;
+  display: grid;
+  place-items: center;
+}
+
+header {
+  width: 85%;
+  height: 95%;
+  /* background-color: aqua; */
+  border: 1px solid white;
+  /* color: aqua; */
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  
+}
+
+header .menu, .lagu {
+  position: relative;
+  /* border: 1px solid white;  */
+  width: 25%;
+  height: 90%;
+  background-color: rgb(27, 26, 36);
+  box-shadow: 5px 0px 2px rgb(40, 34, 49);
+  color: white;
+}
+
+header .lagu {
+ 
+  width: 75%;
+  background: rgb(23, 23, 32);
+  /* background-color: rgb(66, 119, 165); */
+}
+
+header .play {
+  width: 100%;
+  height: 10%;
+  background-color: rgb(27, 26, 36);
+  color: aqua;
+  /* box-shadow: 0px 3px 8px rgb(33, 28, 43); */
+}
+
+
+/*            Sidebar          */
+
+header .menu h1 {
+  margin: 15px 0px 0px 20px;
+  font-size: 20px;
+  /* font-weight: 500; */
+}
+
+header .menu .playlist {
+  margin: 40px 0px 0px 20px;
+}
+
+header .menu .playlist h4 {
+  font-size: 14px;
+  font-weight: 400;
+  padding-bottom: 10px;
+  color: bisque;
+  cursor: pointer;
+  transition: .3s linear;
+  display: flex;
+  align-items: center;
+}
+
+header .menu .playlist h4:hover {
+  color: white;
+  /* background-color: rgb(105, 105, 105, 1); */
+}
+
+header .menu .playlist h4 span {
+  position: relative;
+  margin-right: 33px;
+}
+
+header .menu .playlist h4 span::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border: 2px solid gray;
+  border-radius: 50%;
+  top: -4px;
+  transition: .3s linear;
+
+}
+
+header .menu .playlist h4:hover span::before{
+  border: 2px solid white;
+}
+
+header .menu .playlist h4 .bi {
+  display: none;
+}
+
+header .menu .playlist .active { 
+  color: rgb(244, 198, 141);
+}
+
+header .menu .playlist .active span {
+  display: none;
+}
+
+header .menu .playlist .active .bi {
+  display: flex;
+  margin-right: 20px;
+}
+
+header .menu .menu_lagu {
+  width: 100%;
+  /* border: 1px solid white; */
+  height: 400px;
+  margin-top: 40px;
+  overflow: auto;
+
+}
+
+header .menu .menu_lagu::-webkit-scrollbar{
+  display: none;
+}
+
+header .menu .menu_lagu li {
+  list-style-type: none;
+  padding: 5px 0px 5px 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+header .menu .menu_lagu li:hover{
+  background-color: rgb(105, 105, 105, .1);
+}
+
+header .menu .menu_lagu li span {
+  font-size: 13px;
+  font-weight: 600;
+  color: gray;
+}
+
+header .menu .menu_lagu li img {
+  width: 32px;
+  height: 32px;
+  margin-left: 25px;
+}
+
+
+header .menu .menu_lagu li h5 {
+  margin-left: 25px;
+  font-size: 11px;
+  width: 147px;
+  /* border: 1px solid white; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+
+header .menu .menu_lagu li .penjelasan {
+  font-size: 10px;
+  color: gray;
+}
+
+header .menu .menu_lagu li .bi {
+  right: 15px;
+  position: absolute;
+  /* font-size: 15px; */
+}
+
+
+
+ 
+
+
+
+
+
+
