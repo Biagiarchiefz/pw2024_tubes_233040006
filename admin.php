@@ -15,11 +15,61 @@
 
 <body>
 
-<header>
-  <div class="sidebar">sidee</div>
+  <header class="">
+    <div class="sidebar">
 
-  <div class="hal_utama">main</div>
-</header>
+      <div class="logo mt-2">
+        <p>tunetrack
+          admin.</p>
+        </div>
+
+       <div class="sidebar_menu">
+
+        <div class="mn d-flex">
+          <div class="icn me-3">
+            <img src="icons/home-hashtag.png" class="" alt="">
+          </div>
+          <p class="">songs</p>
+        </div>
+
+        <div class="mn d-flex">
+          <div class="icn me-3">
+            <img src="icons/profile-circle.png" alt="">
+          </div>
+         <a href="">
+           <p>Users</p>
+         </a> 
+        </div>
+
+        <div class="mn d-flex">
+          <div class="icn me-3">
+            <img src="icons/group.png" alt="">
+          </div>
+          <p>Sign Out</p>
+        </div>
+    
+       </div>
+    </div>
+
+    <div class="hal_utama">
+
+      <div class="cari py-3 text-light">
+        <form class="">
+          <input class="form-control me-2 rounded-pill text-light bg-dark" type="search" placeholder="Search" aria-label="Search">
+          <div class="icon">
+            <img src="icons/search-normal.png" alt="">
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+
+
+
+
+
+  </header>
 
 
 
