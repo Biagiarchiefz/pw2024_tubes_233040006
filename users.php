@@ -24,14 +24,14 @@ $data = query("SELECT * FROM users");
 <body>
 
   <header class="">
-    <div class="sidebar">
+    <div class="sidebar border-end border-5 border-dark ">
 
       <div class="logo mt-2">
         <p>tunetrack
           admin.</p>
       </div>
 
-      <div class="sidebar_menu">
+      <div class="sidebar_menu ">
 
         <div class="mn d-flex">
           <div class="icn me-3">
@@ -63,7 +63,7 @@ $data = query("SELECT * FROM users");
       </div>
     </div>
 
-    <div class="hal_utama">
+    <div class="hal_utama mx-auto">
 
       <div class="cari py-3 text-light">
         <form class="">
