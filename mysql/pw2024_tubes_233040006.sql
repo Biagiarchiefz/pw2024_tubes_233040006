@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 10, 2024 at 02:35 AM
+-- Generation Time: May 26, 2024 at 10:11 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -24,55 +24,83 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Table structure for table `music`
 --
 
-CREATE TABLE `role` (
-  `id_role` int NOT NULL,
-  `nama_role` varchar(100) NOT NULL
+CREATE TABLE `music` (
+  `music_id` int NOT NULL,
+  `judul_lagu` varchar(255) NOT NULL,
+  `artis` varchar(100) NOT NULL,
+  `genre` varchar(255) NOT NULL,
+  `album_img` varchar(255) DEFAULT NULL,
+  `file_link` varchar(255) DEFAULT NULL,
+  `user_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
-  `id` int NOT NULL,
-  `gambar` varchar(255) NOT NULL,
+CREATE TABLE `users` (
+  `user_id` int NOT NULL,
   `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `id_role` int NOT NULL
+  `email` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `role`) VALUES
+(211, 'biagi', '123456', 'biagi@gmail.com', 'admin'),
+(212, 'tayo', '5555', 'tayo@gmail.com', 'user');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `role`
+-- Indexes for table `music`
 --
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id_role`);
+ALTER TABLE `music`
+  ADD PRIMARY KEY (`music_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `users`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_role` (`id_role`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `music`
+--
+ALTER TABLE `music`
+  MODIFY `music_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `user`
+-- Constraints for table `music`
 --
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
+ALTER TABLE `music`
+  ADD CONSTRAINT `music_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

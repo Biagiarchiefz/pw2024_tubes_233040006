@@ -20,7 +20,7 @@ header {
   height: 95%;
   /* border: 1px solid white; */
   display: flex;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
 }
 
 header .sidebar{
@@ -54,15 +54,10 @@ header .sidebar .sidebar_menu .mn p {
 
 }
 
-
-
-
-
 header .hal_utama {
-  /* border: 1px solid rgb(208, 29, 29); */
-  /* width: 75%; */
-  /* background-color: #1E1E1E; */
+  width: 900px;
 }
+
 
 header .hal_utama .cari {
   /* border: 1px solid white; */
@@ -96,15 +91,23 @@ header .hal_utama .cari .icon {
 
 }
 
-header .hal_utama .form-control:hover {
-  color: white;
+header .hal_utama .cari .form-control:hover {
+  /* color: white; */
   /* background-color: #000000; */
-  border: 1px solid white;
+  border: 2px solid white;
   
 }
 
 header .hal_utama input {
   background-color: #121316;
+  
+}
+
+header .hal_utama .data table tbody td img {
+  color: aquamarine;
+  /* -webkit-filter: grayscale(100%);  */
+  /* filter: grayscale(100%); */
+  
 }
 
 

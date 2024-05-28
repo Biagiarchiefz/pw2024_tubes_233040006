@@ -10,7 +10,7 @@
 body {
   width: 100%;
   height: 100vh;
-  background-color: rgb(0, 0, 0);
+  /* background-color: rgb(23, 21, 21); */
   font-family: 'Poppins', sans-serif;
   display: grid;
   place-items: center;
@@ -20,7 +20,7 @@ header {
   width: 85%;
   height: 95%;
   /* background-color: aqua; */
-  border: 1px solid white;
+  /* border: 1px solid rgb(134, 28, 28); */
   /* color: aqua; */
   display: flex;
   flex-wrap: wrap;
@@ -29,27 +29,28 @@ header {
 }
 
 header .menu, .lagu {
-  position: relative;
+  /* position: relative; */
   /* border: 1px solid white;  */
   width: 25%;
   height: 90%;
-  background-color: rgb(27, 26, 36);
-  box-shadow: 5px 0px 2px rgb(40, 34, 49);
+  background-color: #1A1A1A;
+  /* box-shadow: 5px 0px 2px #090f1f; */
   color: white;
+  
 }
 
 header .lagu {
- 
+  /* border: 1px solid wheat; */
   width: 75%;
-  background: rgb(23, 23, 32);
-  /* background-color: rgb(66, 119, 165); */
+  background-color: #1A1A1A;
 }
 
 header .play {
   width: 100%;
   height: 10%;
-  background-color: rgb(27, 26, 36);
-  color: aqua;
+  background-color: #61677A;
+  /* color: aqua; */
+  /* box-shadow: 0px 3px 8px #090f1f; */
   /* box-shadow: 0px 3px 8px rgb(33, 28, 43); */
 }
 
@@ -59,7 +60,7 @@ header .play {
 header .menu h1 {
   margin: 15px 0px 0px 20px;
   font-size: 20px;
-  /* font-weight: 500; */
+  font-weight: 700;
 }
 
 header .menu .playlist {
@@ -70,7 +71,7 @@ header .menu .playlist h4 {
   font-size: 14px;
   font-weight: 400;
   padding-bottom: 10px;
-  color: bisque;
+  color: #4c5262;
   cursor: pointer;
   transition: .3s linear;
   display: flex;
@@ -108,7 +109,7 @@ header .menu .playlist h4 .bi {
 }
 
 header .menu .playlist .active { 
-  color: rgb(244, 198, 141);
+  color: #FFFFFF;
 }
 
 header .menu .playlist .active span {
@@ -173,8 +174,8 @@ header .menu .menu_lagu li h5 {
 }
 
 header .menu .menu_lagu li .penjelasan {
-  font-size: 10px;
   color: gray;
+  font-size: 10px;
 }
 
 header .menu .menu_lagu li .bi {
@@ -182,6 +183,552 @@ header .menu .menu_lagu li .bi {
   position: absolute;
   /* font-size: 15px; */
 }
+
+
+/*         bagian play bawah          */
+
+header .play {
+  display: flex;
+  padding: 0px 20px;
+  align-items: center;
+}
+
+header .play .nada {
+  width: 30px;
+  height: 30px;
+   /* border: 1px solid white; */
+   padding-bottom: 5px;
+   display: flex;
+   align-items: flex-end;
+   margin-right: 10px;
+}
+
+header .play .nada .nada1 {
+  width: 3px;
+  height: 10px;
+  background-color: #FFFFFF;
+  margin-right: 3px;
+  border-radius: 10px 10px 0px 0px;
+  animation: unset;
+  
+}
+
+header .play .nada .nada1:nth-child(2){
+  height: 13px;
+  animation-delay: .4s;
+  
+}
+
+header .play .nada .nada1:nth-child(3) {
+  height: 8px;
+  animation-delay: .8s;
+}
+
+/*          javascript          */
+
+header .play .active1 .nada1 {
+  animation: nada .5s linear infinite;
+}
+
+header .play .active1 .nada1:nth-child(2) {
+  animation-delay: .4s;
+}
+
+header .play .active1 .nada1:nth-child(2) {
+ animation-delay: .8s;
+
+}
+
+@keyframes nada {
+ 0%{
+  height: 10px;
+ }
+
+50% {
+  height: 15px;
+}
+
+100% {
+  height: 10px;
+}
+
+}
+
+header .play img {
+  width: 35px;
+  height: 35px;
+}
+
+header .play h5 {
+  width: 130px;
+  margin-left: 15px;
+  color: rgb(255, 255, 255);
+  line-height: 17px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+header .play h5 .nama {
+ font-size: 11px;
+ color: #4c5262;
+ width: 100%;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
+
+header .play .icon {
+  color: #FFFFFF;
+  font-size: 20px;
+  margin: 0px 20px 0px 45px;
+  outline: none;
+}
+
+header .play .icon .bi {
+  cursor: pointer;
+  outline: none;
+}
+
+
+header .play .icon .shuffle {
+  font-size: 17px;
+  width: 17px;
+  overflow: hidden;
+}
+
+header .play .icon #download_music {
+  font-size: 20px;
+}
+
+
+header .play .icon .bi:nth-child(3){
+
+  border: 1px solid rgb(105, 105, 105, .1);
+  padding: 1px 5px 0px 7px;
+  border-radius: 50%;
+}
+
+header .play span {
+  color: white;
+  width: 32px;
+  /* border: 1px solid white; */
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0px 0px 0px 20px;
+}
+
+header .play #duration {
+  
+ 
+}
+
+header .play .bar {
+  position: relative;
+  width: 43%;
+  height: 2px;
+  background: rgb(105, 105, 170, .1);
+  margin: 0px 15px 0px 10px;
+
+}
+
+header .play .bar .bar2{
+  position: absolute;
+  background-color: #FFFFFF;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  transition: 1s linear;
+}
+
+header .play .bar .dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  left: 0;
+  top: -1.5px;
+}
+
+header .play .bar .dot::before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 1px solid white;
+  border-radius: 50%;
+  left: -6px;
+  top: -5px;
+  box-shadow: inset 0px 0px 3px #FFFFFF;
+}
+
+header .play .bar input {
+  position: absolute;
+  width: 100%;
+  top: -7px;
+  left: 0;
+  cursor: pointer;
+  z-index: 99999999999;
+  /* transition: ; */
+  opacity: 0;
+}
+
+header .play .vol {
+  position: relative;
+  width: 100px;
+  height: 2px;
+  background-color: rgb(105, 105, 170, .1);
+  margin-left: 50px;
+
+}
+
+header .play .vol .bi {
+  position: absolute;
+  color: white;
+  font-size: 25px;
+  top: -17px;
+  left: -30px;
+}
+
+header .play .vol input {
+  position: absolute;
+  width: 100%;
+  top: -5px;
+  left: 0;
+  cursor: pointer;
+  z-index: 99999;
+  opacity: 0;
+
+}
+
+header .play .vol .vol_bar {
+  position: absolute;
+  background-color: #FFFFFF;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  transition: 1s linear;
+}
+
+header .play .vol .dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  left: 0;
+  top: -1.5px;
+  transition: 1s linear;
+}
+
+
+header .play .vol .dot::before{
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+  left: -5px;
+  top: -5px;
+  box-shadow: inset 0px 0px 3px #FFFFFF;
+}
+
+
+
+/*          halaman utama          */
+
+header .lagu {
+  scroll-behavior: smooth;
+}
+
+header .lagu::-webkit-scrollbar {
+  display: none;
+}
+
+header .lagu nav {
+  width: 90%;
+  height: 10%;
+  /* border: 1px solid white; */
+  margin: auto;
+
+}
+
+header .lagu nav ul li {
+ list-style: none;  
+ position: relative;
+ font-size: 15px;
+ color: #4c5262;
+ margin-right: 25px;
+ cursor: pointer;
+ transition: .3s linear;
+
+}
+
+header .lagu nav ul li:hover {
+ color: white;
+ }
+
+ header .lagu nav ul li:nth-child(1){
+  color: white;
+ }
+ 
+ header .lagu nav ul li span {
+  position: absolute;
+  width: 100%;
+  height: 2.5px;
+  background-color: #CCCCCC;
+  bottom: -5px;
+  left: 0;
+  border-radius: 20px;
+ }
+ 
+ header .lagu nav .cari {
+  /* border: 1px solid white; */
+  width: 400px;
+  position: relative;
+  /* height: 97px; */
+
+}
+
+header .lagu nav .form-control {
+  outline: 0;
+   /* padding: 12px 16px 12px 16px; */
+   padding-left: 60px;
+   border: none;
+   /* outline: none; */
+   font-size: 12px;
+  
+}
+
+header .lagu nav .form-control::placeholder {
+  color: #626262;
+}
+
+header .lagu nav .cari .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #626262;
+  /* font-size: 1.6em; */
+
+}
+
+header .lagu nav .cari .icon img {
+  width: 20px;
+  height: 20px;
+}
+
+header .lagu nav .form-control:hover {
+  color: white;
+  /* background-color: #000000; */
+  border: 1px solid white;
+  
+}
+
+header .lagu nav input {
+  background-color: #121316;
+}
+
+header .lagu .content {
+  width: 90%;
+  height: 30%;
+  /* border: 1px solid white; */
+
+}
+header .lagu .content h1 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+header .lagu .content p {
+  font-size: 12px;
+  color: #CCCCCC;
+}
+
+header .lagu .content .buttons button:hover {
+  background: none;
+  border: 2px solid white;
+}
+
+header .lagu .content .buttons button:nth-child(2):hover {
+  color: white;
+}
+
+
+
+/*    kumpulan lagu dan artis       */
+
+header .lagu .lagu_populer {
+  width: 90%;
+  height: auto;
+   /* border: 1px solid white; */
+   margin: auto;
+   /* margin-top: 15px; */
+}
+
+
+header .lagu .lagu_populer .kupu .bi {
+  color: #a4a8b4;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+header .lagu .lagu_populer .kupu .bi:hover{
+  color: white;
+}
+
+header .lagu .lagu_populer .kumpul_lagu {
+  width: 100%;
+  height: 150px;
+  /* border: 1px solid white; */
+  scroll-behavior: smooth;
+
+}
+
+header .lagu .lagu_populer .kumpul_lagu::-webkit-scrollbar{
+  display: none;
+}
+
+
+header .lagu .lagu_populer .kumpul_lagu li {
+  min-width: 100px;
+  height: 140px;
+  list-style-type: none;
+  margin-right: 10px;   
+  transition: .3s linear;
+
+}
+
+header .lagu .lagu_populer .kumpul_lagu li:hover{
+  background: rgb(105, 105, 170, .1);
+}
+
+header .lagu .lagu_populer .kumpul_lagu .img_play {
+  width: 100px;
+  height: 100px;
+}
+
+header .lagu .lagu_populer .kumpul_lagu li .img_play img {
+  width: 100%;
+  height: 100%;
+}
+
+header .lagu .lagu_populer .kumpul_lagu li .img_play .bi {
+  font-size: 20px;
+  cursor: pointer;
+  transition: .3s linear;
+  opacity: 0;
+}
+
+header .lagu .lagu_populer .kumpul_lagu li:hover .img_play .bi {
+  opacity: 1;
+}
+
+header .lagu .lagu_populer .kumpul_lagu li h5 {
+  padding: 5px 0px 0px 5px;
+  line-height: 15px;
+  font-size: 10px;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+header .lagu .lagu_populer .kumpul_lagu li h5 .penjelasan {
+  font-size: 9px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #4c5262;
+}
+
+
+/*       bagian artis       */
+
+header .lagu .artis_populer {
+  width: 90%;
+  height: auto;
+  /* border: 1px solid white ; */
+}
+
+
+header .lagu .artis_populer .laba .bi {
+  color: #a4a8b4;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+header .lagu .artis_populer .laba .bi:hover{
+  color: white;
+}
+
+
+
+
+header .lagu .artis_populer .kumpul_artis {
+  width: 100%;
+  height: 150px;
+  /* border: 1px solid white; */
+  scroll-behavior: smooth;
+}
+
+header .lagu .artis_populer .kumpul_artis::-webkit-scrollbar{
+  display: none;
+}
+
+header .lagu .artis_populer .kumpul_artis li {
+  min-width: 100px;
+  height: 140px;
+  list-style-type: none;
+  margin-right: 10px;   
+  transition: .3s linear;
+
+}
+
+header .lagu .artis_populer .kumpul_artis li:hover{
+  background: rgb(105, 105, 170, .1);
+}
+
+header .lagu .artis_populer .kumpul_artis .img_play {
+  width: 100px;
+  height: 100px;
+}
+
+header .lagu .artis_populer .kumpul_artis li .img_play img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+header .lagu .artis_populer .kumpul_artis li .img_play .bi {
+  font-size: 20px;
+  cursor: pointer;
+  transition: .3s linear;
+  opacity: 0;
+}
+
+header .lagu .artis_populer .kumpul_artis li:hover .img_play .bi {
+  opacity: 1;
+}
+
+header .lagu .artis_populer .kumpul_artis li h5 {
+  padding: 5px 0px 0px 5px;
+  line-height: 15px;
+  font-size: 10px;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 
 
 

@@ -61,7 +61,7 @@ if (isset($_POST["submit"])) {
             <div class="mb-2">
               <label for="username" class="form-label text-light">Username</label>
               <div class="field-group text-light">
-                <input type="text" class="form-control rounded-pill text-light" id="username" placeholder="Username" name="username">
+                <input type="text" class="form-control rounded-pill text-light" id="username" placeholder="Username" name="username" required>
                 <div class="icon">
                   <img src="icons/crown.png" alt="">
                 </div>
@@ -74,7 +74,7 @@ if (isset($_POST["submit"])) {
             <div class="mb-2">
               <label for="exampleFormControlInput1" class="form-label text-light">Password</label>
               <div class="field-group text-light">
-                <input type="password" class="form-control rounded-pill" id="exampleFormControlInput1" placeholder="Password" name="password">
+                <input type="password" class="form-control rounded-pill" id="exampleFormControlInput1" placeholder="Password" name="password" required>
                 <div class="icon">
                   <img src="icons/lock.png" alt="">
                 </div>
@@ -90,22 +90,24 @@ if (isset($_POST["submit"])) {
               <img src="" alt="">
               <button type="submit" name="submit" class="btn btn-primary mb-2 w-100 rounded-pill">Sign in</button>
             </div>
+            
+            
+            <div class="">
+              <a href="create_akun.php" class="text-decoration-none">
+                <button type="button" class="btn btn-light w-100 rounded-pill">Create New Account</button>
+              </a>
+            </div>
+          </div>
         </form>
 
+      </div>
 
-        <div class="">
-          <button type="button" class="btn btn-light w-100 rounded-pill"><a href="create_akun.php" class="text-decoration-none">Create New Account</a></button>
-        </div>
+      <div class="d2 col-md-6">
+
+        <p class="text-light fw-bold">tune track.</p>
       </div>
 
     </div>
-
-    <div class="d2 col-md-6">
-
-      <p class="text-light fw-bold">tune track.</p>
-
-    </div>
-  </div>
   </div>
 
 

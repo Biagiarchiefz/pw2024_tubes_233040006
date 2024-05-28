@@ -66,7 +66,9 @@
             <button type="button" class="btn btn-primary mb-2 w-100 rounded-pill">Create Account</button>
           </div>
           <div class="">
-            <button type="button" class="btn btn-light w-100 rounded-pill">Sign In to My Account</button>
+            <a href="login.php">
+              <button type="button" class="btn btn-light w-100 rounded-pill">Sign In to My Account</button>
+            </a>
           </div>
         </div>
       </div>
