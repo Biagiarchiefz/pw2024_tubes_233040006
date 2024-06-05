@@ -33,6 +33,7 @@ header .sidebar{
 header .sidebar .logo {
   /* border: 1px solid white; */
   width: 80%;
+  
 }
 
 header .sidebar p {
@@ -71,6 +72,7 @@ header .hal_utama .form-control {
    padding: 12px 16px 12px 16px;
    padding-left: 60px;
    border: none;
+  
 }
 
 header .hal_utama .form-control::placeholder {

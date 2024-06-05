@@ -12,7 +12,6 @@ if( hapus ($id) > 0 ) {
   </script>
   ";
   } else {
-  
     echo "
     <script>
     alert('Data gagal dihapus');
@@ -23,3 +22,5 @@ if( hapus ($id) > 0 ) {
 
 
 ?>
+
+

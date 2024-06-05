@@ -19,22 +19,24 @@ body {
 header {
   width: 99%;
   height: 99vh;
-  display: flex;
-  flex-wrap: wrap;
   /* background-color: aqua; */
   /* border: 1px solid rgb(134, 28, 28); */
   /* color: aqua; */
-  /* overflow: hidden; */  
+  display: flex;
+  flex-wrap: wrap;
+  /* overflow: hidden; */
+
+  
 }
 
 header .menu, .lagu {
-  background-color: #1A1A1A;
+  /* position: relative; */
+  /* border: 1px solid white;  */
   width: 22%;
   height: 90%;
-  color: white;
-  /* position: relative; */
+  background-color: #1A1A1A;
   /* box-shadow: 5px 0px 2px #090f1f; */
-  /* border: 1px solid white;  */
+  color: white;
   
 }
 
@@ -444,8 +446,13 @@ header .play .vol .dot::before{
 
 /*          halaman utama          */
 
+
+
+
+
 header .lagu {
   scroll-behavior: smooth;
+ 
 }
 
 header .lagu::-webkit-scrollbar {
@@ -544,7 +551,7 @@ header .lagu nav input {
 
 header .lagu .content {
   width: 90%;
-  height: 30%;
+  height: 20%;
   /* border: 1px solid white; */
 
 }
@@ -575,6 +582,8 @@ header .lagu .lagu_populer {
   width: 90%;
   height: auto;
   margin: auto;
+
+
   /* border: 1px solid white; */
    /* margin-top: 15px; */
 }
@@ -738,6 +747,7 @@ header .lagu .artis_populer .kumpul_artis li h5 {
 
 
  
+
 
 
 

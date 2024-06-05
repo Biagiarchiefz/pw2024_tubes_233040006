@@ -3,6 +3,11 @@ require("functions.php");
 // tampung ke variabel
 $data = query("SELECT * FROM users");
 
+if (isset($_POST["bcari"])) {
+  $data = cariemail($_POST["keyword"]);
+}
+
+
 ?>
 
 
@@ -37,8 +42,17 @@ $data = query("SELECT * FROM users");
           <div class="icn me-3">
             <img src="icons/home-hashtag.png" class="" alt="">
           </div>
-          <a href="admin.php">
-            <p class="">songs</p>
+          <a href="admin.php" class="text-decoration-none">
+            <p class="">Music</p>
+          </a>
+        </div>
+
+        <div class="mn d-flex">
+          <div class="icn me-3">
+            <img src="icons/home-hashtag.png" class="" alt="">
+          </div>
+          <a href="adminpod.php" class="text-decoration-none">
+            <p class="">Podcast</p>
           </a>
         </div>
 
@@ -46,7 +60,7 @@ $data = query("SELECT * FROM users");
           <div class="icn me-3">
             <img src="icons/profile-circle.png" alt="">
           </div>
-          <a href="">
+          <a href="adminusers.php" class="text-decoration-none">
             <p>Users</p>
           </a>
         </div>
@@ -55,7 +69,7 @@ $data = query("SELECT * FROM users");
           <div class="icn me-3">
             <img src="icons/group.png" alt="">
           </div>
-          <a href="login.php">
+          <a href="login.php" onclick="return confirm('Apakah anda yakin keluar halaman ini?')" class="text-decoration-none">
             <p>Sign Out</p>
           </a>
         </div>
@@ -65,12 +79,13 @@ $data = query("SELECT * FROM users");
 
     <div class="hal_utama mx-auto">
 
-      <div class="cari py-3 text-light">
-        <form class="">
-          <input class="form-control me-2 rounded-pill text-light bg-dark" type="search" placeholder="Search" aria-label="Search">
-          <div class="icon">
+      
+    <div class="cari py-3 text-light">
+        <form action="" method="POST">
+          <input class="form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="mau cari apa?" aria-label="Search" name="keyword" autofocus autocomplete="off">
+          <button class="icon btn btn-link" type="submit" name="bcari">
             <img src="icons/search-normal.png" alt="">
-          </div>
+          </button>
         </form>
       </div>
 
@@ -79,22 +94,34 @@ $data = query("SELECT * FROM users");
           <thead class="">
             <tr>
               <th scope="col">#</th>
+              <th scope="col">gambar</th>
               <th scope="col">username</th>
               <th scope="col">email</th>
-              <th scope="col">Password</th>
-              <th scope="col">Role</th>
-             
+              <th scope="col">action</th>
             </tr>
+              
+            <?php if (empty($data)) : ?>
+              <tr>
+                <td colspan="7">
+                  <p style="font-style : italic;" class="fw-bold text-center mt-2">Data music tidak ditemukan</p>
+                </td>
+              </tr>
+            <?php endif; ?>
+
           </thead>
           <tbody>
             <?php $i = 1;
             foreach ($data as $d) : ?>
               <tr>
                 <th><?= $i++; ?></th>
+                <td><img src="img/665ddc1493b39.jpg" alt="" style="width: 50%; height: 80px;"></td>
                 <td><?= $d["username"]; ?></td>
                 <td><?= $d["email"]; ?></td>
-                <td><?= $d["password"]; ?></td>
-                <td><?= $d["role"]; ?></td>
+                <td>
+                <a href="hapus.php?id=<?= $d['id']; ?>" onclick="return confirm('Apakah kamu yakin menghapus data ini?')" class="badge text text-decoration-none"><img src="icons/material-symbols_delete.png" alt=""></a>
+                </td>
+                
+     
                 
               </tr>
             <?php endforeach; ?>
@@ -103,6 +130,10 @@ $data = query("SELECT * FROM users");
       </div>
 
     </div>
+
+    
+
+ 
 
   </header>
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['login'])) {
+if(!isset($_SESSION['login'])) {
   header("Location: index1.php");
   exit;
 }
@@ -11,16 +11,18 @@ if (!isset($_SESSION['login'])) {
   exit;
 }
 
+
 require("functions.php");
 
 // tampung ke variabel
-$music = query("SELECT * FROM music");
+$podcast = query("SELECT * FROM podcast");
 
 
 if (isset($_POST["bcari"])) {
-  $music = cari($_POST["keyword"]);
+  $podcast = caripod($_POST["keyword"]);
 }
-// akhir search
+
+
 
 
 
@@ -47,7 +49,7 @@ if (isset($_POST["bcari"])) {
 
 <body>
 
-
+  
   <header class="">
     <div class="sidebar border-end border-5 border-dark ">
 
@@ -89,7 +91,7 @@ if (isset($_POST["bcari"])) {
           <div class="icn me-3">
             <img src="icons/group.png" alt="">
           </div>
-          <a href="login.php" onclick="return confirm('Apakah anda yakin keluar halaman?')" class="text-decoration-none">
+          <a href="login.php" onclick="return confirm('Apakah anda yakin keluar halaman ini?')" class="text-decoration-none">
             <p>Sign Out</p>
           </a>
         </div>
@@ -101,8 +103,8 @@ if (isset($_POST["bcari"])) {
 
       <div class="cari py-3 text-light">
         <form action="" method="POST">
-          <input class="keyword form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="mau cari apa?" aria-label="Search" name="keyword" autofocus autocomplete="off">
-          <button class="tombol icon btn btn-link" type="submit" name="bcari">
+          <input class="form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="mau cari apa?" aria-label="Search" name="keyword" autofocus autocomplete="off">
+          <button class="icon btn btn-link" type="submit" name="bcari">
             <img src="icons/search-normal.png" alt="">
           </button>
         </form>
@@ -113,7 +115,7 @@ if (isset($_POST["bcari"])) {
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary rounded-4" data-bs-toggle="modal" data-bs-target="#addsongs">
-          Add songs
+          Add podcast
         </button>
 
         <!-- Modal tambah data -->
@@ -161,11 +163,16 @@ if (isset($_POST["bcari"])) {
                 </div>
               </form>
 
+
             </div>
           </div>
         </div>
         <!-- akhir modal tambah  -->
+
+
+
       </div>
+
 
       <div class="data mt-4 ">
         <table class="table table-dark table-hover">
@@ -174,13 +181,12 @@ if (isset($_POST["bcari"])) {
               <th scope="col">#</th>
               <th scope="col">judul_lagu</th>
               <th scope="col">artis</th>
-              <th scope="col">genre</th>
               <th scope="col">album</th>
               <th scope="col">file_link</th>
               <th scope="col">action</th>
             </tr>
-
-            <?php if (empty($music)) : ?>
+            
+            <?php if (empty($podcast)) : ?>
               <tr>
                 <td colspan="7">
                   <p style="font-style : italic;" class="fw-bold text-center mt-2">Data music tidak ditemukan</p>
@@ -192,20 +198,19 @@ if (isset($_POST["bcari"])) {
           <tbody>
 
             <?php $i = 1;
-            foreach ($music as $mu) : ?>
+            foreach ($podcast as $pod) : ?>
               <tr>
                 <th><?= $i++; ?></th>
-                <td><?= $mu["judul_lagu"]; ?></td>
-                <td><?= $mu["artis"]; ?></td>
-                <td><?= $mu["genre"]; ?></td>
-                <td><img src="img/<?= $mu["album_img"]; ?>" alt="" style="width: 70%; height: 70px;"></td>
-                <td><?= $mu["file_link"]; ?></td>
+                <td><?= $pod["judul_podcast"]; ?></td>
+                <td><?= $pod["artis"]; ?></td>
+                <td><img src="img/<?= $pod["album"]; ?>" alt="" style="width: 30%; height: 70px;"></td>
+                <td><?= $pod["file_link"]; ?></td>
 
                 <td>
 
                   <a href="" class="badge text text-decoration-none" data-bs-toggle="modal" data-bs-target="#updatesongs<?= $i ?>"><img src="icons/edit.png" alt=""></a>
 
-                  <a href="hapus.php?id=<?= $mu["music_id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data ini?')" class="badge text text-decoration-none"><img src="icons/material-symbols_delete.png" alt=""></a>
+                  <a href="hapus.php?id=<?= $mu["music_id"]; ?>" onclick="return confirm('are you sure Delete?')" class="badge text text-decoration-none"><img src="icons/material-symbols_delete.png" alt=""></a>
 
                 </td>
               </tr>
@@ -276,7 +281,8 @@ if (isset($_POST["bcari"])) {
 
   </header>
 
-  <script src="js/script.js"></script>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

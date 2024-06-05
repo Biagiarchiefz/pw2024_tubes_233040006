@@ -1,19 +1,19 @@
 <?php
-// cek apakah tombol submit sudah ditekan atau belum
-if (isset($_POST["submit"])) {
 
-  // cek username dan password 
-  if ($_POST["username"] == "admin" && $_POST["password"] == "123") {
+session_start();
 
-
-    // jika benar, redirect ke halaman admin
-    header("Location: admin.php");
-    exit;
-  } else {
-    // jika salah, tampilkan pesan kesalahan
-    $error = true;
-  }
+if (isset($_SESSION['login'])) {
+  header("Location: index1.php");
+  exit;
 }
+
+require 'functions.php';
+
+
+if (isset($_POST['login'])) {
+  $login = login($_POST);
+}
+
 
 
 ?>
@@ -44,13 +44,8 @@ if (isset($_POST["submit"])) {
           <p>Enter your details to continue enjoying your favorite tunes.</p>
         </div>
 
-        <?php if (isset($error)) : ?>
-          echo "
-          <script>
-            alert('username dan password salah');
-            document.location.href = 'login.php';
-          </script>
-          ";
+        <?php if (isset($login['error'])) : ?>
+          <p style="color: red;"><?= $login['pesan']; ?></p>
         <?php endif; ?>
 
 
@@ -61,7 +56,7 @@ if (isset($_POST["submit"])) {
             <div class="mb-2">
               <label for="username" class="form-label text-light">Username</label>
               <div class="field-group text-light">
-                <input type="text" class="form-control rounded-pill text-light" id="username" placeholder="Username" name="username" required>
+                <input type="text" class="form-control rounded-pill text-light shadow-none" id="#username" placeholder="Username" name="username" required autofocus autocomplete="off">
                 <div class="icon">
                   <img src="icons/crown.png" alt="">
                 </div>
@@ -69,12 +64,10 @@ if (isset($_POST["submit"])) {
             </div>
 
 
-
-
             <div class="mb-2">
               <label for="exampleFormControlInput1" class="form-label text-light">Password</label>
               <div class="field-group text-light">
-                <input type="password" class="form-control rounded-pill" id="exampleFormControlInput1" placeholder="Password" name="password" required>
+                <input type="password" class="form-control rounded-pill text-light shadow-none" id="exampleFormControlInput1" placeholder="Password..." name="password" required autofocus autocomplete="off">
                 <div class="icon">
                   <img src="icons/lock.png" alt="">
                 </div>
@@ -84,19 +77,21 @@ if (isset($_POST["submit"])) {
 
           </div>
 
-          <div class="p3">
+          <div class="p3 mt-4">
 
             <div class="">
-              <img src="" alt="">
-              <button type="submit" name="submit" class="btn btn-primary mb-2 w-100 rounded-pill">Sign in</button>
-            </div>
-            
-            
-            <div class="">
-              <a href="create_akun.php" class="text-decoration-none">
-                <button type="button" class="btn btn-light w-100 rounded-pill">Create New Account</button>
+              <a href="">
+                <button type="submit" name="login" class="btn btn-primary mb-2 w-100 rounded-pill">Sign in</button>
               </a>
             </div>
+
+
+            <div class="">
+              <a href="registrasi.php" class="text-decoration-none">
+                <button type="button" name="" class="btn btn-light w-100 rounded-pill">Create New Account</button>
+              </a>
+            </div>
+
           </div>
         </form>
 
