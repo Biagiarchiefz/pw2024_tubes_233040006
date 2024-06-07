@@ -39,7 +39,7 @@ header .menu, .lagu {
 }
 
 header .lagu {
-  /* border: 1px solid wheat; */
+  /* border: 5px solid rgb(212, 186, 138); */
   width: 78%;
   background-color: #1A1A1A;
 }
@@ -129,7 +129,7 @@ header .menu .menu_lagu {
   width: 100%;
   /* border: 1px solid white; */
   height: 400px;
-  margin-top: 40px;
+  margin-top: 20px;
   overflow: auto;
 
 }
@@ -446,6 +446,7 @@ header .play .vol .dot::before{
 
 header .lagu {
   scroll-behavior: smooth;
+  
 }
 
 header .lagu::-webkit-scrollbar {
@@ -574,7 +575,8 @@ header .lagu .content .buttons button:nth-child(2):hover {
 header .lagu .lagu_populer {
   width: 90%;
   height: auto;
-  margin: auto;
+  /* margin: auto; */
+  /* box-sizing: border-box; */
   /* border: 1px solid white; */
    /* margin-top: 15px; */
 }
@@ -593,8 +595,11 @@ header .lagu .lagu_populer .kupu .bi:hover{
 header .lagu .lagu_populer .kumpul_lagu {
   width: 100%;
   height: 150px;
+  box-sizing: border-box;
+  
   /* border: 1px solid white; */
   scroll-behavior: smooth;
+  
 
 }
 
@@ -604,16 +609,21 @@ header .lagu .lagu_populer .kumpul_lagu::-webkit-scrollbar{
 
 
 header .lagu .lagu_populer .kumpul_lagu li {
-  min-width: 100px;
-  height: 140px;
+  min-width: 115px;
+  height: 146px;
   list-style-type: none;
   margin-right: 10px;   
   transition: .3s linear;
+  padding: 7px 7px 0px 7px;
+
+  /* border: 1px solid wheat; */
 
 }
 
 header .lagu .lagu_populer .kumpul_lagu li:hover{
-  background: rgb(105, 105, 170, .1);
+  background: rgba(179, 179, 196, 0.1);
+  border-radius: 5px;
+  
 }
 
 header .lagu .lagu_populer .kumpul_lagu .img_play {
@@ -690,16 +700,18 @@ header .lagu .artis_populer .kumpul_artis::-webkit-scrollbar{
 }
 
 header .lagu .artis_populer .kumpul_artis li {
-  min-width: 100px;
-  height: 140px;
+  min-width: 110px;
+  height: 130px;
   list-style-type: none;
-  margin-right: 10px;   
   transition: .3s linear;
+  padding: 5px 5px 0px 5px;
 
 }
 
 header .lagu .artis_populer .kumpul_artis li:hover{
-  background: rgb(105, 105, 170, .1);
+  background: rgba(179, 179, 196, 0.1);
+  border-radius: 5px;
+  
 }
 
 header .lagu .artis_populer .kumpul_artis .img_play {
@@ -710,7 +722,7 @@ header .lagu .artis_populer .kumpul_artis .img_play {
 header .lagu .artis_populer .kumpul_artis li .img_play img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 header .lagu .artis_populer .kumpul_artis li .img_play .bi {

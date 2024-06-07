@@ -13,13 +13,24 @@ if (!isset($_SESSION['login'])) {
 
 require("functions.php");
 
+// paginition 
+$jumlahdata1hal = 5;
+$jumlahdata = count(query("SELECT * FROM music"));
+$jumlahhalaman = ceil($jumlahdata / $jumlahdata1hal);
+$halamandigunakan = (isset($_GET['halaman'])) ?  $_GET['halaman'] : 1;
+$awaldata = ($jumlahdata1hal *  $halamandigunakan) - $jumlahdata1hal;
+
+
+
+
 // tampung ke variabel
-$music = query("SELECT * FROM music");
+$music = query("SELECT * FROM music LIMIT $awaldata, $jumlahdata1hal");
 
 
 if (isset($_POST["bcari"])) {
   $music = cari($_POST["keyword"]);
 }
+
 // akhir search
 
 
@@ -69,7 +80,7 @@ if (isset($_POST["bcari"])) {
 
         <div class="mn d-flex">
           <div class="icn me-3">
-            <img src="icons/home-hashtag.png" class="" alt="">
+            <img src="icons/f7_mic-fill.png" class="" alt="">
           </div>
           <a href="adminpod.php" class="text-decoration-none">
             <p class="">Podcast</p>
@@ -89,7 +100,7 @@ if (isset($_POST["bcari"])) {
           <div class="icn me-3">
             <img src="icons/group.png" alt="">
           </div>
-          <a href="login.php" onclick="return confirm('Apakah anda yakin keluar halaman?')" class="text-decoration-none">
+          <a href="index1.php" onclick="return confirm('Apakah anda yakin keluar halaman?')" class="text-decoration-none">
             <p>Sign Out</p>
           </a>
         </div>
@@ -97,11 +108,11 @@ if (isset($_POST["bcari"])) {
       </div>
     </div>
 
-    <div class="hal_utama mx-auto">
+    <div class="hal_utama mx-auto overflow-auto">
 
       <div class="cari py-3 text-light">
         <form action="" method="POST">
-          <input class="keyword form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="mau cari apa?" aria-label="Search" name="keyword" autofocus autocomplete="off">
+          <input class="keyword form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="mau cari apa?" aria-label="Search" name="keyword" autocomplete="off">
           <button class="tombol icon btn btn-link" type="submit" name="bcari">
             <img src="icons/search-normal.png" alt="">
           </button>
@@ -198,7 +209,7 @@ if (isset($_POST["bcari"])) {
                 <td><?= $mu["judul_lagu"]; ?></td>
                 <td><?= $mu["artis"]; ?></td>
                 <td><?= $mu["genre"]; ?></td>
-                <td><img src="img/<?= $mu["album_img"]; ?>" alt="" style="width: 70%; height: 70px;"></td>
+                <td><img src="img/<?= $mu["album_img"]; ?>" alt="" style="width: 70%; height: 70px;" class="rounded"></td>
                 <td><?= $mu["file_link"]; ?></td>
 
                 <td>
@@ -269,6 +280,33 @@ if (isset($_POST["bcari"])) {
             <?php endforeach; ?>
           </tbody>
         </table>
+
+        <ul class="pagination fw-bold">
+          <?php if($halamandigunakan > 1) : ?>
+          <li class="page-item">
+            <a class="page-link" href="?halaman= <?= $halamandigunakan - 1; ?>" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <?php endif; ?>
+
+          <?php for ($i = 1; $i <= $jumlahhalaman; $i++) : ?>
+            <?php if ($i == $halamandigunakan) : ?>
+              <li class="page-item"><a class="page-link text-primary" href="?halaman=<?= $i; ?>"><?= $i; ?></a></li>
+            <?php else : ?>
+              <li class="page-item"><a class="page-link text-secondary" href="?halaman=<?= $i; ?>"><?= $i; ?></a></li>
+            <?php endif; ?>
+          <?php endfor; ?>
+
+          <?php if($halamandigunakan < $jumlahhalaman) : ?>
+          <li class="page-item">
+            <a class="page-link" href="?halaman= <?= $halamandigunakan + 1; ?>" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <?php endif; ?>
+        </ul>
+
       </div>
 
 

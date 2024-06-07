@@ -8,13 +8,15 @@ if (!isset($_SESSION['login'])) {
 
 require("functions.php");
 
-$music = query("SELECT * FROM music");
+$music = query("SELECT * FROM music LIMIT 0, 12");
 $podcast = query("SELECT * FROM podcast");
 
 
+// search data    
 if (isset($_POST["bcari"])) {
   $music = cari($_POST["keyword"]);
 }
+
 
 if (isset($_POST["bcari"])) {
   $podcast = caripod($_POST["keyword"]);
@@ -51,9 +53,15 @@ if (isset($_POST["bcari"])) {
       <h1>Tunetrack.</h1>
       <div class="playlist ">
         <h4 class="active"><span></span><i class="bi bi-house-door"></i>Home</h4>
-        <h4 class="active"><span></span><i class="bi bi-search"></i>Search</h4>
-        <!-- <h4> <span></span> <i class="bi bi-music-note-list"></i>Rekomendasi</h4> -->
+        <h4 class="active" for="searchinx"><span></span><i class="bi bi-search"></i><label for="searchinx">Search</label></h4>
+        <!-- <ht4> <span></span> <i class="bi bi-music-note-list"></i>Rekomendasi</ht4> -->
       </div>
+      <div class="ms-4 mt-4">
+      <button class="btn btn-dark rounded-pill">Artist</button>
+      <button class="btn btn-dark rounded-pill">Playlist</button>
+      </div>
+      
+      
 
       <div class="menu_lagu">
 
@@ -81,7 +89,6 @@ if (isset($_POST["bcari"])) {
     <div class="lagu overflow-auto rounded-4 border-bottom border-5 border-dark ">
 
       <nav class="d-flex justify-content-between align-items-center ms-4">
-
         <ul class="d-flex mt-3">
           <a href="index1.php">
             <li>All<span></span></li>
@@ -103,7 +110,7 @@ if (isset($_POST["bcari"])) {
 
         <div class="cari py-3 text-light">
           <form action="" method="post">
-            <input class="form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="Search music" aria-label="Search" name="keyword" autocomplete="off">
+            <input class="form-control me-2 rounded-pill text-light bg-dark shadow-none" id="searchinx" type="search" placeholder="Search music" aria-label="Search" name="keyword" autocomplete="off">
             <button class="icon btn btn-link" type="submit" name="bcari">
               <img src="icons/search-normal.png" alt="">
             </button>
@@ -122,8 +129,6 @@ if (isset($_POST["bcari"])) {
         </div>
       </nav>
 
-
-
       <!--   bawah nav hal utama   -->
       <div class="content m-auto pt-3">
         <h1>Tunetrack.</h1>
@@ -134,15 +139,14 @@ if (isset($_POST["bcari"])) {
         </div>
       </div>
 
-      //   dadsdsdsd
-
-      <div class="lagu_populer">
+      <div class="lagu_populer m-auto">
 
         <div class="kupu d-flex align-items-center justify-content-between">
           <h4>lagu populer</h4>
           <div class="tombol">
-            <i class="bi bi-arrow-left-short"></i>
-            <i class="bi bi-arrow-right-short"></i>
+           <a href="music.php" class="text-decoration-none text-light">
+            <p>show all</p>
+          </a>
           </div>
         </div>
 
@@ -167,8 +171,9 @@ if (isset($_POST["bcari"])) {
         <div class="laba d-flex align-items-center justify-content-between">
           <h4>artis populer</h4>
           <div class="tombol">
-            <i class="bi bi-arrow-left-short"></i>
-            <i class="bi bi-arrow-right-short"></i>
+          <a href="music.php" class="text-decoration-none text-light">
+            <p>show all</p>
+          </a>
           </div>
         </div>
 
@@ -177,7 +182,7 @@ if (isset($_POST["bcari"])) {
           <?php foreach ($music as $mu) : ?>
             <li class="artis_item">
               <div class="img_play d-flex align-items-center justify-content-center position-relative">
-                <img src="img/<?= $mu["album_img"]; ?>" alt="">
+                <img src="img/<?= $mu["album_img"]; ?>" alt="" class="rounded-circle">
                 <i class="bi playListPlay bi-play-circle position-absolute"></i>
               </div>
               <h5><?= $mu["artis"]; ?></h5>
@@ -191,8 +196,9 @@ if (isset($_POST["bcari"])) {
         <div class="laba d-flex align-items-center justify-content-between">
           <h4>Podcast populer</h4>
           <div class="tombol">
-            <i class="bi bi-arrow-left-short"></i>
-            <i class="bi bi-arrow-right-short"></i>
+          <a href="podcast.php" class="text-decoration-none text-light">
+            <p>show all</p>
+          </a>
           </div>
         </div>
 
@@ -200,8 +206,8 @@ if (isset($_POST["bcari"])) {
 
           <?php foreach ($podcast as $pod) : ?>
             <li class="artis_item">
-              <div class="img_play d-flex align-items-center justify-content-center position-relative">
-                <img src="img/<?= $pod["album"]; ?>" alt="">
+              <div class="img_play d-flex align-items-center justify-content-center position-relative ">
+                <img src="img/<?= $pod["album"]; ?>" alt="" class="rounded">
                 <i class="bi playListPlay bi-play-circle position-absolute"></i>
               </div>
               <h5><?= $pod["judul_podcast"]; ?></h5>

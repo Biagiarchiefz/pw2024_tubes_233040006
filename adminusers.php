@@ -1,7 +1,26 @@
 <?php
+
+
+
+
+
+
+
+
+
+
 require("functions.php");
+//paginition 
+$jumlahdata1hal = 5;
+$jumlahdata = count(query("SELECT * FROM podcast"));
+$jumlahhalaman = ceil($jumlahdata / $jumlahdata1hal);
+$halamandigunakan = (isset($_GET['halamanuser'])) ?  $_GET['halamanuser'] : 1;
+$awaldata = ($jumlahdata1hal *  $halamandigunakan) - $jumlahdata1hal;
+
+
+
 // tampung ke variabel
-$data = query("SELECT * FROM users");
+$data = query("SELECT * FROM users LIMIT $awaldata, $jumlahdata1hal");
 
 if (isset($_POST["bcari"])) {
   $data = cariemail($_POST["keyword"]);
@@ -49,7 +68,7 @@ if (isset($_POST["bcari"])) {
 
         <div class="mn d-flex">
           <div class="icn me-3">
-            <img src="icons/home-hashtag.png" class="" alt="">
+            <img src="icons/f7_mic-fill.png" class="" alt="">
           </div>
           <a href="adminpod.php" class="text-decoration-none">
             <p class="">Podcast</p>
@@ -114,11 +133,11 @@ if (isset($_POST["bcari"])) {
             foreach ($data as $d) : ?>
               <tr>
                 <th><?= $i++; ?></th>
-                <td><img src="img/665ddc1493b39.jpg" alt="" style="width: 50%; height: 80px;"></td>
+                <td><img src="img/665ddc1493b39.jpg" alt="" style="width: 50%; height: 80px;" class="rounded"></td>
                 <td><?= $d["username"]; ?></td>
                 <td><?= $d["email"]; ?></td>
                 <td>
-                <a href="hapus.php?id=<?= $d['id']; ?>" onclick="return confirm('Apakah kamu yakin menghapus data ini?')" class="badge text text-decoration-none"><img src="icons/material-symbols_delete.png" alt=""></a>
+                <a href="hapus.php?iduser=<?= $d['id']; ?>" onclick="return confirm('Apakah kamu yakin menghapus data ini?')" class="badge text text-decoration-none"><img src="icons/material-symbols_delete.png" alt=""></a>
                 </td>
                 
      
@@ -127,6 +146,33 @@ if (isset($_POST["bcari"])) {
             <?php endforeach; ?>
           </tbody>
         </table>
+
+        <ul class="pagination fw-bold">
+          <?php if ($halamandigunakan > 1) : ?>
+            <li class="page-item">
+              <a class="page-link" href="?halamanuser= <?= $halamandigunakan - 1; ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          <?php endif; ?>
+
+          <?php for ($i = 1; $i <= $jumlahhalaman; $i++) : ?>
+            <?php if ($i == $halamandigunakan) : ?>
+              <li class="page-item"><a class="page-link text-primary" href="?halamanuser=<?= $i; ?>"><?= $i; ?></a></li>
+            <?php else : ?>
+              <li class="page-item"><a class="page-link text-secondary" href="?halamanuser=<?= $i; ?>"><?= $i; ?></a></li>
+            <?php endif; ?>
+          <?php endfor; ?>
+
+          <?php if ($halamandigunakan < $jumlahhalaman) : ?>
+            <li class="page-item">
+              <a class="page-link" href="?halamanuser= <?= $halamandigunakan + 1; ?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          <?php endif; ?>
+        </ul>
+
       </div>
 
     </div>

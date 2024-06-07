@@ -582,28 +582,20 @@ header .lagu .lagu_populer {
   width: 90%;
   height: auto;
   margin: auto;
-
-
   /* border: 1px solid white; */
-   /* margin-top: 15px; */
 }
 
 
-header .lagu .lagu_populer .kupu .bi {
-  color: #a4a8b4;
-  cursor: pointer;
-  transition: .3s linear;
-}
-
-header .lagu .lagu_populer .kupu .bi:hover{
-  color: white;
-}
 
 header .lagu .lagu_populer .kumpul_lagu {
-  width: 100%;
-  height: 150px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; 
+  /* width: 100%;
+  height: 150px; */
   /* border: 1px solid white; */
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 
 }
 
@@ -614,20 +606,22 @@ header .lagu .lagu_populer .kumpul_lagu::-webkit-scrollbar{
 
 header .lagu .lagu_populer .kumpul_lagu li {
   min-width: 100px;
-  height: 140px;
+  height: 153px;
   list-style-type: none;
-  margin-right: 10px;   
+  /* margin-right: 10px;    */
   transition: .3s linear;
+  padding: 5px 5px 0px 5px;
 
 }
 
 header .lagu .lagu_populer .kumpul_lagu li:hover{
-  background: rgb(105, 105, 170, .1);
+  background: rgba(179, 179, 196, 0.1);
+  border-radius: 5px;
 }
 
 header .lagu .lagu_populer .kumpul_lagu .img_play {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
 }
 
 header .lagu .lagu_populer .kumpul_lagu li .img_play img {
@@ -666,87 +660,6 @@ header .lagu .lagu_populer .kumpul_lagu li h5 .penjelasan {
 
 
 /*       bagian artis       */
-
-header .lagu .artis_populer {
-  width: 90%;
-  height: auto;
-  /* border: 1px solid white ; */
-}
-
-
-header .lagu .artis_populer .laba .bi {
-  color: #a4a8b4;
-  cursor: pointer;
-  transition: .3s linear;
-}
-
-header .lagu .artis_populer .laba .bi:hover{
-  color: white;
-}
-
-
-
-
-header .lagu .artis_populer .kumpul_artis {
-  width: 100%;
-  height: 150px;
-  /* border: 1px solid white; */
-  scroll-behavior: smooth;
-}
-
-header .lagu .artis_populer .kumpul_artis::-webkit-scrollbar{
-  display: none;
-}
-
-header .lagu .artis_populer .kumpul_artis li {
-  min-width: 100px;
-  height: 140px;
-  list-style-type: none;
-  margin-right: 10px;   
-  transition: .3s linear;
-
-}
-
-header .lagu .artis_populer .kumpul_artis li:hover{
-  background: rgb(105, 105, 170, .1);
-}
-
-header .lagu .artis_populer .kumpul_artis .img_play {
-  width: 100px;
-  height: 100px;
-}
-
-header .lagu .artis_populer .kumpul_artis li .img_play img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-
-header .lagu .artis_populer .kumpul_artis li .img_play .bi {
-  font-size: 20px;
-  cursor: pointer;
-  transition: .3s linear;
-  opacity: 0;
-}
-
-header .lagu .artis_populer .kumpul_artis li:hover .img_play .bi {
-  opacity: 1;
-}
-
-header .lagu .artis_populer .kumpul_artis li h5 {
-  padding: 5px 0px 0px 5px;
-  line-height: 15px;
-  font-size: 10px;
-  width: 100px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-
-
-
- 
 
 
 

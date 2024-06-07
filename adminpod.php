@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['login'])) {
+if (!isset($_SESSION['login'])) {
   header("Location: index1.php");
   exit;
 }
@@ -14,8 +14,18 @@ if (!isset($_SESSION['login'])) {
 
 require("functions.php");
 
+//paginition 
+$jumlahdata1hal = 5;
+$jumlahdata = count(query("SELECT * FROM podcast"));
+$jumlahhalaman = ceil($jumlahdata / $jumlahdata1hal);
+$halamandigunakan = (isset($_GET['halamanpod'])) ?  $_GET['halamanpod'] : 1;
+$awaldata = ($jumlahdata1hal *  $halamandigunakan) - $jumlahdata1hal;
+
+
+
 // tampung ke variabel
-$podcast = query("SELECT * FROM podcast");
+$podcast = query("SELECT * FROM podcast LIMIT $awaldata, $jumlahdata1hal");
+
 
 
 if (isset($_POST["bcari"])) {
@@ -49,7 +59,7 @@ if (isset($_POST["bcari"])) {
 
 <body>
 
-  
+
   <header class="">
     <div class="sidebar border-end border-5 border-dark ">
 
@@ -71,7 +81,7 @@ if (isset($_POST["bcari"])) {
 
         <div class="mn d-flex">
           <div class="icn me-3">
-            <img src="icons/home-hashtag.png" class="" alt="">
+            <img src="icons/f7_mic-fill.png" class="" alt="">
           </div>
           <a href="adminpod.php" class="text-decoration-none">
             <p class="">Podcast</p>
@@ -123,7 +133,7 @@ if (isset($_POST["bcari"])) {
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title" id="addsongs">Add songs</h4>
+                <h4 class="modal-title" id="addsongs">Add podcast</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
 
@@ -131,18 +141,13 @@ if (isset($_POST["bcari"])) {
                 <div class="modal-body">
 
                   <div class="mb-3">
-                    <label class="form-label" for="judul">judul_lagu</label>
-                    <input type="text" class="form-control bg-light shadow-sm bg-body-tertiary rounded" id="judul" placeholder="Masukan judul lagu..." name="judul" required>
+                    <label class="form-label" for="judul">judul podcast</label>
+                    <input type="text" class="form-control bg-light shadow-sm bg-body-tertiary rounded" id="judul" placeholder="Masukan judul podcast..." name="judul_pod" required>
                   </div>
 
                   <div class="mb-3">
                     <label class="form-label" for="artis">artis</label>
-                    <input type="text" class="form-control bg-light shadow-sm bg-body-tertiary rounded" id="artis" placeholder="Masukan nama artis..." name="artis" required>
-                  </div>
-
-                  <div class="mb-3">
-                    <label class="form-label" for="genre">genre</label>
-                    <input type="text" class="form-control bg-light shadow-sm bg-body-tertiary rounded" id="genre" placeholder="Masukan genre..." name="genre" required>
+                    <input type="text" class="form-control bg-light shadow-sm bg-body-tertiary rounded" id="artis" placeholder="Masukan nama artis..." name="artis_pod" required>
                   </div>
 
                   <div class="mb-3">
@@ -152,13 +157,13 @@ if (isset($_POST["bcari"])) {
 
                   <div class="mb-3">
                     <label class="form-label" for="file">file_link</label>
-                    <input type="text" class="form-control bg-light shadow-sm bg-body-tertiary rounded" id="file" placeholder="Masukan file/link lagu..." name="file" required>
+                    <input type="text" class="form-control bg-light shadow-sm bg-body-tertiary rounded" id="file" placeholder="Masukan file/link lagu..." name="file_pod" required>
                   </div>
 
                 </div>
 
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
+                  <button type="submit" class="btn btn-primary" name="submitpod">Tambah</button>
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Keluar</button>
                 </div>
               </form>
@@ -185,7 +190,7 @@ if (isset($_POST["bcari"])) {
               <th scope="col">file_link</th>
               <th scope="col">action</th>
             </tr>
-            
+
             <?php if (empty($podcast)) : ?>
               <tr>
                 <td colspan="7">
@@ -203,20 +208,20 @@ if (isset($_POST["bcari"])) {
                 <th><?= $i++; ?></th>
                 <td><?= $pod["judul_podcast"]; ?></td>
                 <td><?= $pod["artis"]; ?></td>
-                <td><img src="img/<?= $pod["album"]; ?>" alt="" style="width: 30%; height: 70px;"></td>
+                <td><img src="img/<?= $pod["album"]; ?>" alt="" style="width: 30%; height: 60px;" class="rounded"></td>
                 <td><?= $pod["file_link"]; ?></td>
 
                 <td>
 
-                  <a href="" class="badge text text-decoration-none" data-bs-toggle="modal" data-bs-target="#updatesongs<?= $i ?>"><img src="icons/edit.png" alt=""></a>
+                  <a href="" class="badge text text-decoration-none" data-bs-toggle="modal" data-bs-target="#updatepod<?= $i ?>"><img src="icons/edit.png" alt=""></a>
 
-                  <a href="hapus.php?id=<?= $mu["music_id"]; ?>" onclick="return confirm('are you sure Delete?')" class="badge text text-decoration-none"><img src="icons/material-symbols_delete.png" alt=""></a>
+                  <a href="hapus.php?idpod=<?= $pod["id_podcast"]; ?>" onclick="return confirm('are you sure Delete?')" class="badge text text-decoration-none"><img src="icons/material-symbols_delete.png" alt=""></a>
 
                 </td>
               </tr>
 
               <!-- Modal update -->
-              <div class="modal fade modal-lg text-dark" id="updatesongs<?= $i ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal fade modal-lg text-dark" id="updatepod<?= $i ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -227,39 +232,34 @@ if (isset($_POST["bcari"])) {
 
                     <form action="functions.php" method="post">
 
-                      <input type="hidden" class="form-control bg-light" placeholder="Masukan judul lagu..." name="music_id" value="<?= $mu["music_id"]; ?>">
+                      <input type="hidden" class="form-control bg-light" placeholder="Masukan judul lagu..." name="pod_id" value="<?= $pod["id_podcast"]; ?>">
                       <div class="modal-body">
 
 
                         <div class="mb-3">
                           <label class="form-label">Judul lagu</label>
-                          <input type="text" class="form-control bg-light" placeholder="Masukan judul lagu..." name="judul" value="<?= $mu["judul_lagu"]; ?>">
+                          <input type="text" class="form-control bg-light" placeholder="Masukan judul podcast..." name="judul" value="<?= $pod["judul_podcast"]; ?>">
                         </div>
 
                         <div class="mb-3">
                           <label class="form-label">Artis</label>
-                          <input type="text" class="form-control bg-light" placeholder="Masukan artis..." name="artis" value="<?= $mu["artis"]; ?>">
-                        </div>
-
-                        <div class="mb-3">
-                          <label class="form-label">Genre</label>
-                          <input type="text" class="form-control bg-light" placeholder="Masukan genre..." name="genre" value="<?= $mu["genre"]; ?>">
+                          <input type="text" class="form-control bg-light" placeholder="Masukan artis..." name="artis" value="<?= $pod["artis"]; ?>">
                         </div>
 
                         <div class="mb-3">
                           <label class="form-label">Album</label>
-                          <input type="text" class="form-control bg-light" placeholder="Masukan album..." name="album" value="<?= $mu["album_img"]; ?>">
+                          <input type="text" class="form-control bg-light" placeholder="Masukan album..." name="album" value="<?= $pod["album"]; ?>">
                         </div>
 
                         <div class="mb-3">
                           <label class="form-label">file</label>
-                          <input type="text" class="form-control bg-light" placeholder="Masukan file..." name="file" value="<?= $mu["file_link"]; ?>">
+                          <input type="text" class="form-control bg-light" placeholder="Masukan file..." name="file" value="<?= $pod["file_link"]; ?>">
                         </div>
 
                       </div>
 
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" name="ubah">Simpan</button>
+                        <button type="submit" class="btn btn-primary" name="ubahpod">Simpan</button>
 
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Keluar</button>
                       </div>
@@ -274,6 +274,33 @@ if (isset($_POST["bcari"])) {
             <?php endforeach; ?>
           </tbody>
         </table>
+
+        <ul class="pagination fw-bold">
+          <?php if ($halamandigunakan > 1) : ?>
+            <li class="page-item">
+              <a class="page-link" href="?halamanpod= <?= $halamandigunakan - 1; ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          <?php endif; ?>
+
+          <?php for ($i = 1; $i <= $jumlahhalaman; $i++) : ?>
+            <?php if ($i == $halamandigunakan) : ?>
+              <li class="page-item"><a class="page-link text-primary" href="?halamanpod=<?= $i; ?>"><?= $i; ?></a></li>
+            <?php else : ?>
+              <li class="page-item"><a class="page-link text-secondary" href="?halamanpod=<?= $i; ?>"><?= $i; ?></a></li>
+            <?php endif; ?>
+          <?php endfor; ?>
+
+          <?php if ($halamandigunakan < $jumlahhalaman) : ?>
+            <li class="page-item">
+              <a class="page-link" href="?halamanpod= <?= $halamandigunakan + 1; ?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          <?php endif; ?>
+        </ul>
+
       </div>
 
 

@@ -105,6 +105,83 @@ function upload()
 }
 
 
+function uploadpod()
+{
+
+  $nama_file = $_FILES['album']['name'];
+  $tipe_file = $_FILES['album']['type'];
+  $ukuran_file = $_FILES['album']['size'];
+  $error = $_FILES['album']['error'];
+  $tmp_file = $_FILES['album']['tmp_name'];
+
+
+  // ketidak tidak ada gambar yang di pilih
+
+  if ($error == 4) {
+    echo "
+    <script>
+    alert('pilih gambar');
+    </script>
+    ";
+
+    return false;
+  }
+
+  //  cek ektensi file
+
+  $daftar_gambar = ['jpg', 'jpeg', 'png'];
+  $ekstensi_file = explode('.', $nama_file);
+  $ekstensi_file = strtolower(end($ekstensi_file));
+
+  if (!in_array($ekstensi_file, $daftar_gambar)) {
+    echo "
+    <script>
+    alert('yang anda tambahkan bukan gambar, Pilih gambar lain!!');
+    </script>
+    ";
+
+    return false;
+  }
+
+
+  // cek type file
+  if ($tipe_file != 'image/jpeg' && $tipe_file != 'image/png') {
+
+    echo "
+    <script>
+    alert('yang anda tambahkan bukan gambar, Pilih gambar lain!!');
+    </script>
+    ";
+
+    return false;
+  }
+
+  // cek ukuran file max 5mb
+  if ($ukuran_file > 5000000) {
+
+    echo "
+    <script>
+    alert('ukuran gambar terlalu besar!');
+    </script>
+    ";
+
+    return false;
+  }
+
+  // lolos pengecekan 
+  // siap upload file
+  // generate nama file baru
+  $nama_file_baru = uniqid();
+  $nama_file_baru .= '.';
+  $nama_file_baru .= $ekstensi_file;
+
+
+  move_uploaded_file($tmp_file, 'img/' . $nama_file_baru);
+  return $nama_file_baru;
+}
+
+// akhir uploadd
+
 
 
 // function tambah data
@@ -156,6 +233,54 @@ if (isset($_POST["submit"])) {
   }
 }
 
+
+function tambahpod($data)
+{
+  $conn = koneksi();
+
+  $judul = htmlspecialchars($data["judul_pod"]);
+  $artis = htmlspecialchars($data["artis_pod"]);
+  // $album = htmlspecialchars($data["album"]);
+  $file  = htmlspecialchars($data["file_pod"]);
+
+  // upload gambar 
+  $album = uploadpod();
+  if (!$album) {
+    return false;
+  }
+
+
+  $query = "INSERT INTO podcast VALUES 
+  (null, '$judul', '$artis', '$album', '$file')";
+
+  mysqli_query($conn, $query);
+
+  return mysqli_affected_rows($conn);
+}
+
+
+if (isset($_POST["submitpod"])) {
+
+
+  if (tambahpod($_POST)  > 0) {
+
+    echo "
+  <script>
+  alert('Data berhasil ditambahkan');
+  document.location.href = 'adminpod.php';
+  </script>
+  ";
+  } else {
+
+    echo "
+    <script>
+    alert('Data gagal ditambahkan');
+    document.location.href = 'adminpod.php';
+    </script>
+    ";
+  }
+}
+
 // akhir tambah data
 
 
@@ -167,9 +292,28 @@ function hapus($id)
 {
   $conn = koneksi();
 
-  mysqli_query($conn, "DELETE FROM users WHERE id = $id");
+ 
   mysqli_query($conn, "DELETE FROM music WHERE music_id = $id");
 
+
+  return mysqli_affected_rows($conn);
+}
+
+
+function hapususer($id)
+{
+  $conn = koneksi();
+
+  mysqli_query($conn, "DELETE FROM users WHERE id = $id");
+
+  return mysqli_affected_rows($conn);
+}
+
+function hapuspod($id)
+{
+  $conn = koneksi();
+
+  mysqli_query($conn, "DELETE FROM podcast WHERE id_podcast = $id");
 
   return mysqli_affected_rows($conn);
 }
@@ -182,6 +326,7 @@ function hapus($id)
 
 
 //      update data   
+
 $conn = koneksi();
 
 // jika tombol ubah di klik
@@ -189,7 +334,7 @@ if (isset($_POST['ubah'])) {
 
 
   // update data ini 
-  $simpan = mysqli_query($conn, "UPDATE music SET 
+  $update = mysqli_query($conn, "UPDATE music SET 
                                                 judul_lagu = '$_POST[judul]',
                                                 artis = '$_POST[artis]',
                                                 genre = '$_POST[genre]',
@@ -198,7 +343,7 @@ if (isset($_POST['ubah'])) {
                                                 WHERE music_id = '$_POST[music_id]'
                                                 ");
 
-  if ($simpan) {
+  if ($update) {
 
     echo "
   <script>
@@ -217,6 +362,37 @@ if (isset($_POST['ubah'])) {
   }
 }
 
+// jika tombol yang namanya ubahpod di klik
+if (isset($_POST['ubahpod'])) {
+
+  // update data ini [nama table]
+  $update = mysqli_query($conn, "UPDATE podcast SET 
+                                                judul_podcast = '$_POST[judul]',
+                                                artis = '$_POST[artis]',           
+                                                album = '$_POST[album]',
+                                                file_link = '$_POST[file]'
+                                                WHERE id_podcast = '$_POST[pod_id]'
+                                                ");
+
+  if ($update) {
+
+    echo "
+  <script>
+  alert('Data berhasil diubah');
+  document.location.href = 'adminpod.php';
+  </script>
+  ";
+  } else {
+
+    echo "
+    <script>
+    alert('Data gagal ubah');
+    document.location.href = 'adminpod.php';
+    </script>
+    ";
+  }
+}
+
 //  akhir update data 
 
 
@@ -230,7 +406,7 @@ function cari($keyword)
              WHERE 
              artis LIKE '%$keyword%' OR
              judul_lagu LIKE '%$keyword%' OR
-             genre LIKE '$keyword' ";
+             genre LIKE '%$keyword%' ";
 
 
   $result = mysqli_query($conn, $query);
@@ -287,6 +463,7 @@ function cariemail($keyword)
 // akhir search data
 
 
+// loginn
 
 function login($log)
 {
@@ -397,24 +574,22 @@ function registrasi($data)
 
 
 
+//   pagination 
 
 
 
 
 
-// //     status userr
-// function cek_status($nama)
-// {
-//   $conn = koneksi();
-//   // $nama = escape ($nama);
-
-//   $query = "SELECT role FROM users WHERE username = '$nama'";
 
 
-//   if ($result = mysqli_query($conn, $query));
-//   $status = mysqli_fetch_assoc($result)[1];
 
-//    if($status == 1 ) return true;
-//     else return false;
 
-// }
+
+
+
+
+
+
+
+
+

@@ -129,18 +129,11 @@ $music = query("SELECT * FROM music");
 
       <div class="lagu_populer">
 
-        <div class="kupu d-flex align-items-center justify-content-between">
-          <h4>Kumpulan lagu</h4>
-          <div class="tombol">
-            <i class="bi bi-arrow-left-short"></i>
-            <i class="bi bi-arrow-right-short"></i>
-          </div>
-        </div>
+          <h4 class="fw-bold">Semua lagu</h4>
+        <div class="kumpul_lagu mt-3 d-flex">
 
-        <div class="kumpul_lagu mt-3 d-flex overflow-x-auto">
           <?php foreach ($music as $mu) : ?>
-
-            <li class="lagu_item me-4">
+            <li class="lagu_item me-3">
               <div class="img_play d-flex align-items-center justify-content-center position-relative">
                 <img src="img/<?= $mu["album_img"]; ?>" alt="" class="rounded">
                 <i class="bi playListPlay bi-play-circle position-absolute"></i>
@@ -149,17 +142,11 @@ $music = query("SELECT * FROM music");
                 <div class="penjelasan"><?= $mu["artis"]; ?></div>
               </h5>
             </li>
-
           <?php endforeach; ?>
 
 
         </div>
-
-
       </div>
-
-
-
     </div>
 
 
