@@ -42,13 +42,13 @@ function upload()
   // ketidak tidak ada gambar yang di pilih
 
   if ($error == 4) {
-    echo "
-    <script>
-    alert('pilih gambar');
-    </script>
-    ";
+    // echo "
+    // <script>
+    // alert('pilih gambar');
+    // </script>
+    // ";
 
-    return false;
+    return 'default.jpeg';
   }
 
   //  cek ektensi file
@@ -292,7 +292,11 @@ function hapus($id)
 {
   $conn = koneksi();
 
- 
+  // menghapus di gambar di folder 
+  $music = query("SELECT * FROM music WHERE music_id = $id");
+
+  unlink('img/' . $music['album_img']);
+
   mysqli_query($conn, "DELETE FROM music WHERE music_id = $id");
 
 
@@ -313,6 +317,12 @@ function hapuspod($id)
 {
   $conn = koneksi();
 
+  // menghapus di gambar di folder 
+  $podcast = query("SELECT * FROM podcast WHERE id_podcast = $id");
+
+  unlink('img/' . $podcast['album']);
+
+
   mysqli_query($conn, "DELETE FROM podcast WHERE id_podcast = $id");
 
   return mysqli_affected_rows($conn);
@@ -326,7 +336,6 @@ function hapuspod($id)
 
 
 //      update data   
-
 $conn = koneksi();
 
 // jika tombol ubah di klik
@@ -362,6 +371,7 @@ if (isset($_POST['ubah'])) {
   }
 }
 
+
 // jika tombol yang namanya ubahpod di klik
 if (isset($_POST['ubahpod'])) {
 
@@ -394,6 +404,7 @@ if (isset($_POST['ubahpod'])) {
 }
 
 //  akhir update data 
+
 
 
 
@@ -484,9 +495,8 @@ function login($log)
       $_SESSION['login'] = true;
       $_SESSION['id'] = $user['id'];
 
-      if (
-        $user['id_role'] == 1
-      ) {
+      if ($user['id_role'] == 1) {
+        
         $_SESSION['role'] = 'admin';
       } else {
         $_SESSION['role'] = 'user';
@@ -575,21 +585,3 @@ function registrasi($data)
 
 
 //   pagination 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

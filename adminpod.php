@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// kalau belum ada sesion login kembalikan/ redaireq ke halaman login
 if (!isset($_SESSION['login'])) {
   header("Location: index1.php");
   exit;
@@ -113,8 +114,8 @@ if (isset($_POST["bcari"])) {
 
       <div class="cari py-3 text-light">
         <form action="" method="POST">
-          <input class="form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="mau cari apa?" aria-label="Search" name="keyword" autofocus autocomplete="off">
-          <button class="icon btn btn-link" type="submit" name="bcari">
+          <input class="keywordpod form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="mau cari apa?" aria-label="Search" name="keyword" autofocus autocomplete="off">
+          <button class="tombolpod icon btn btn-link" type="submit" name="bcari">
             <img src="icons/search-normal.png" alt="">
           </button>
         </form>
@@ -232,12 +233,12 @@ if (isset($_POST["bcari"])) {
 
                     <form action="functions.php" method="post">
 
-                      <input type="hidden" class="form-control bg-light" placeholder="Masukan judul lagu..." name="pod_id" value="<?= $pod["id_podcast"]; ?>">
+                      <input type="hidden" class="form-control bg-light" placeholder="Masukan judul podcast..." name="pod_id" value="<?= $pod["id_podcast"]; ?>">
                       <div class="modal-body">
 
 
                         <div class="mb-3">
-                          <label class="form-label">Judul lagu</label>
+                          <label class="form-label">Judul podcast</label>
                           <input type="text" class="form-control bg-light" placeholder="Masukan judul podcast..." name="judul" value="<?= $pod["judul_podcast"]; ?>">
                         </div>
 
@@ -309,7 +310,7 @@ if (isset($_POST["bcari"])) {
   </header>
 
 
-
+  <script src="js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

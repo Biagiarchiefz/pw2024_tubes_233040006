@@ -2,6 +2,7 @@
 
 session_start();
 
+// kalau ada $_sesion login
 if (isset($_SESSION['login'])) {
   header("Location: index1.php");
   exit;

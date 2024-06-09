@@ -27,7 +27,7 @@ header {
   /* overflow: hidden; */  
 }
 
-header .menu, .lagu {
+header .menu {
   background-color: #1A1A1A;
   width: 22%;
   height: 90%;
@@ -42,15 +42,15 @@ header .lagu {
   /* border: 5px solid rgb(212, 186, 138); */
   width: 78%;
   background-color: #1A1A1A;
+  height: 90%;
+  color: white;
 }
 
 header .play {
   width: 100%;
   height: 10%;
   background-color: #61677A;
-  /* color: aqua; */
-  /* box-shadow: 0px 3px 8px #090f1f; */
-  /* box-shadow: 0px 3px 8px rgb(33, 28, 43); */
+  
 }
 
 
@@ -76,6 +76,7 @@ header .menu .playlist h4 {
   transition: .3s linear;
   display: flex;
   align-items: center;
+  margin-left: 10px;
 }
 
 header .menu .playlist h4:hover {
@@ -83,41 +84,19 @@ header .menu .playlist h4:hover {
   /* background-color: rgb(105, 105, 105, 1); */
 }
 
-header .menu .playlist h4 span {
-  position: relative;
-  margin-right: 33px;
-}
-
-header .menu .playlist h4 span::before {
-  content: '';
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border: 2px solid gray;
-  border-radius: 50%;
-  top: -4px;
-  transition: .3s linear;
-
-}
-
-header .menu .playlist h4:hover span::before{
-  border: 2px solid white;
-}
-
 header .menu .playlist h4 .bi {
   display: none;
 }
 
 header .menu .playlist .active { 
-  color: #FFFFFF;
+ color: #4c5262;
   padding: 15px 0px 0px 20px;
   font-weight: bold;
+  font-style: italic ;
 
 }
 
-header .menu .playlist .active span {
-  display: none;
-}
+
 
 header .menu .playlist .active .bi {
   display: flex;
@@ -150,7 +129,7 @@ header .menu .menu_lagu li {
 }
 
 header .menu .menu_lagu li:hover{
-  background-color: rgb(105, 105, 105, .1);
+  background-color: rgba(171, 171, 171, 0.1);
 }
 
 header .menu .menu_lagu li span {
@@ -212,49 +191,16 @@ header .play .nada .nada1 {
   height: 10px;
   background-color: #FFFFFF;
   margin-right: 3px;
-  border-radius: 10px 10px 0px 0px;
   animation: unset;
   
 }
 
 header .play .nada .nada1:nth-child(2){
   height: 13px;
-  animation-delay: .4s;
-  
 }
 
 header .play .nada .nada1:nth-child(3) {
   height: 8px;
-  animation-delay: .8s;
-}
-
-/*          javascript          */
-
-header .play .active1 .nada1 {
-  animation: nada .5s linear infinite;
-}
-
-header .play .active1 .nada1:nth-child(2) {
-  animation-delay: .4s;
-}
-
-header .play .active1 .nada1:nth-child(2) {
- animation-delay: .8s;
-
-}
-
-@keyframes nada {
- 0%{
-  height: 10px;
- }
-
-50% {
-  height: 15px;
-}
-
-100% {
-  height: 10px;
-}
 
 }
 
@@ -276,7 +222,7 @@ header .play h5 {
 
 header .play h5 .nama {
  font-size: 11px;
- color: #4c5262;
+ color: #2f333d;
  width: 100%;
  overflow: hidden;
  text-overflow: ellipsis;
@@ -286,7 +232,7 @@ header .play h5 .nama {
 header .play .icon {
   color: #FFFFFF;
   font-size: 20px;
-  margin: 0px 20px 0px 45px;
+  margin: 0px 20px 0px 100px;
   outline: none;
 }
 
@@ -296,11 +242,6 @@ header .play .icon .bi {
 }
 
 
-header .play .icon .shuffle {
-  font-size: 17px;
-  width: 17px;
-  overflow: hidden;
-}
 
 header .play .icon #download_music {
   font-size: 20px;
@@ -323,16 +264,13 @@ header .play span {
   margin: 0px 0px 0px 20px;
 }
 
-header .play #duration {
-  
- 
-}
+
 
 header .play .bar {
   position: relative;
   width: 43%;
   height: 2px;
-  background: rgb(105, 105, 170, .1);
+  background: rgb(255, 255, 255);
   margin: 0px 15px 0px 10px;
 
 }
@@ -383,7 +321,7 @@ header .play .vol {
   position: relative;
   width: 100px;
   height: 2px;
-  background-color: rgb(105, 105, 170, .1);
+  background-color: rgb(255, 255, 255);
   margin-left: 50px;
 
 }
@@ -465,7 +403,9 @@ header .lagu nav ul li {
  list-style: none;  
  position: relative;
  font-size: 15px;
- color: #4c5262;
+ color: #c4c7d0;
+ font-weight: 700;
+ font-style: italic;
  margin-right: 25px;
  cursor: pointer;
  transition: .3s linear;
@@ -476,19 +416,6 @@ header .lagu nav ul li:hover {
  color: white;
  }
 
- header .lagu nav ul li:nth-child(1){
-  color: white;
- }
- 
- header .lagu nav ul li span {
-  position: absolute;
-  width: 100%;
-  height: 2.5px;
-  background-color: #CCCCCC;
-  bottom: -5px;
-  left: 0;
-  border-radius: 20px;
- }
  
  header .lagu nav .cari {
   /* border: 1px solid white; */
@@ -503,7 +430,6 @@ header .lagu nav .form-control {
    /* padding: 12px 16px 12px 16px; */
    padding-left: 60px;
    border: none;
-   /* outline: none; */
    font-size: 12px;
   
 }
@@ -523,7 +449,6 @@ header .lagu nav .cari .icon {
   align-items: center;
   color: #626262;
 
-  /* font-size: 1.6em; */
 
 }
 

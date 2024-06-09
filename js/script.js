@@ -34,3 +34,39 @@ keyword.addEventListener('keyup', function (){
 
 
 });
+
+
+// priview image untuk tambah data dan update
+function previewImage () {
+  const gambar = document.querySelector('.album');
+  const imgPreview = document.querySelector('.img-preview');
+
+  const oFReader = new FileReader();
+  oFReader.readAsDataURL(gambar.files[0]);
+
+  oFReader.onload = function (oFREvent) {
+    imgPreview.src = oFREvent.target.result;
+  };
+
+}
+
+
+// function previewImage(event) {
+//   const fileInput = event.target;
+//   const modalContent = fileInput.closest('.modal-content');
+//   const imgPreview = modalContent.querySelector('.img-preview');
+
+//   const oFReader = new FileReader();
+//   oFReader.readAsDataURL(fileInput.files[0]);
+
+//   oFReader.onload = function(oFREvent) {
+//     imgPreview.src = oFREvent.target.result;
+//   };
+// }
+
+// document.addEventListener('change', function(event) {
+//   if (event.target.matches('.album')) {
+//     previewImage(event);
+//   }
+// });
+

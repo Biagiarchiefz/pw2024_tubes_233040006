@@ -1,10 +1,16 @@
 <?php
 
+session_start();
 
+if (!isset($_SESSION['login'])) {
+  header("Location: index1.php");
+  exit;
+}
 
-
-
-
+if (!isset($_SESSION['login'])) {
+  header("Location: login.php");
+  exit;
+}
 
 
 
@@ -101,8 +107,8 @@ if (isset($_POST["bcari"])) {
       
     <div class="cari py-3 text-light">
         <form action="" method="POST">
-          <input class="form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="mau cari apa?" aria-label="Search" name="keyword" autofocus autocomplete="off">
-          <button class="icon btn btn-link" type="submit" name="bcari">
+          <input class="keyword form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="mau cari apa?" aria-label="Search" name="keyword" autofocus autocomplete="off">
+          <button class="tombol icon btn btn-link" type="submit" name="bcari">
             <img src="icons/search-normal.png" alt="">
           </button>
         </form>
@@ -133,7 +139,7 @@ if (isset($_POST["bcari"])) {
             foreach ($data as $d) : ?>
               <tr>
                 <th><?= $i++; ?></th>
-                <td><img src="img/665ddc1493b39.jpg" alt="" style="width: 50%; height: 80px;" class="rounded"></td>
+                <td><img src="icons/adminuser.jpeg" alt="" style="width: 50%; height: 80px;" class="rounded"></td>
                 <td><?= $d["username"]; ?></td>
                 <td><?= $d["email"]; ?></td>
                 <td>

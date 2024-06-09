@@ -8,7 +8,12 @@ if (!isset($_SESSION['login'])) {
 
 require("functions.php");
 
+$podside = query("SELECT * FROM podcast LIMIT 5, 10");
 $podcast = query("SELECT * FROM podcast");
+
+if (isset($_POST["bcari"])) {
+  $podcast = caripod($_POST["keyword"]);
+}
 
 ?>
 
@@ -39,20 +44,25 @@ $podcast = query("SELECT * FROM podcast");
     <div class="menu border-end border-bottom border-5 border-dark rounded-4">
       <h1>Tunetrack.</h1>
       <div class="playlist">
-        <h4 class="active"><span></span><i class="bi bi-house-door"></i>Home</h4>
-        <h4 class="active"><span></span><i class="bi bi-search"></i>Search</h4>
+        <h4 class="active"><i class="bi bi-house-door"></i>Home</h4>
+        <h4 class="active"><i class="bi bi-search"></i>Search</h4>
         <!-- <h4> <span></span> <i class="bi bi-music-note-list"></i>Rekomendasi</h4> -->
       </div>
+      
+      <div class="ms-4 mt-4">
+        <button class="btn btn-dark rounded-pill">Artist</button>
+        <button class="btn btn-dark rounded-pill">Playlist</button>
+      </div>
 
-      <div class="menu_lagu">
+      <div class="menu_lagu rounded">
 
         <?php $i = 1;
-        foreach ($podcast as $pod) : ?>
+        foreach ($podside as $pods) : ?>
 
           <li class="lagu_item">
             <!-- <span><?= $i++; ?></span> -->
-            <img src="img/<?= $pod["album"]; ?>" alt="" class="rounded">
-            <h5><?= $pod["artis"]; ?><br>
+            <img src="img/<?= $pods["album"]; ?>" alt="" class="rounded">
+            <h5><?= $pods["artis"]; ?><br>
               <div class="penjelasan">Artist</div>
             </h5>
             <i class="bi playListPlay bi-play-circle" id="1"></i>
@@ -72,26 +82,26 @@ $podcast = query("SELECT * FROM podcast");
       <nav class="d-flex justify-content-between align-items-center ms-4">
 
         <ul class="d-flex mt-3">
-          <a href="index1.php">
+          <a href="index1.php" class="text-decoration-none">
             <li>All<span></span></li>
           </a>
-          <a href="music.php">
+          <a href="music.php" class="text-decoration-none">
             <li>Music</li>
           </a>
-          <a href="podcast.php"><li>Podcast</li></a>
+          <a href="podcast.php" class="text-decoration-none"><li>Podcast</li></a>
 
           
           <?php if ($_SESSION['role'] === 'admin') : ?>
-            <a href="admin.php" class=""><li>Admin</li></a>
+            <a href="admin.php" class="text-decoration-none"><li>Admin</li></a>
           <?php endif; ?>
         </ul>
 
         <div class="cari py-3 text-light">
-          <form class="">
-            <input class="form-control me-2 rounded-pill text-light bg-dark shadow-none" type="search" placeholder="Search music" aria-label="Search">
-            <div class="icon">
+          <form action="" method="post">
+            <input class="form-control me-2 rounded-pill text-light bg-dark shadow-none" id="searchinx" type="search" placeholder="Search music" aria-label="Search" name="keyword" autocomplete="off">
+            <button class="icon btn btn-link" type="submit" name="bcari">
               <img src="icons/search-normal.png" alt="">
-            </div>
+            </button>
           </form>
         </div>
 
@@ -110,25 +120,7 @@ $podcast = query("SELECT * FROM podcast");
 
 
 
-      <!--   bawah nav hal utama   -->
-      <div class="content m-auto pt-3">
-        <!-- <h1>Tunetrack.</h1> -->
-        <div class="d-flex mt-3">
-       <div class="card me-3"  style="border: 2px solid white;  width: 300px;">
-        <div class="">
-          <img src="img/2.jpeg" alt="" style=" width: 40px;" class="rounded">
-        </div>
-       </div>
-       <div class="card"  style="border: 2px solid white;  width: 300px;">
-        <div class="">
-          <img src="img/2.jpeg" alt="" style=" width: 40px;" class="rounded">
-        </div>
-       </div>
-
-       </div>
-      </div>
-
-      <div class="lagu_populer">
+      <div class="lagu_populer mt-5">
 
         <div class="kupu d-flex align-items-center justify-content-between">
           <h4>Semua podcast</h4>
@@ -168,21 +160,21 @@ $podcast = query("SELECT * FROM podcast");
         <div class="nada1"></div>
         <div class="nada1"></div>
       </div>
-      <img src="img/1.jpeg" alt="" id="gambar_play">
+      <img src="img/gojo.jpeg" alt="" id="gambar_play" class="rounded">
       <h5 id="title">
-        superheroes
-        <div class="nama">coldplay</div>
+        ngbrol bareng bg gojo
+        <div class="nama">gojo satoru</div>
       </h5>
 
       <div class="icon d-flex align-items-center">
-        <i class="bi shuffle bi-music-note-beamed me-2 d-flex align-items-center">next</i>
+        <i class="bi bi-music-note-beamed me-2 d-flex align-items-center"></i>
         <i class="bi bi-skip-start-fill"></i>
         <i class="bi bi-play-fill m-2"></i>
         <i class="bi bi-skip-end-fill"></i>
         <i class="bi bi-cloud-arrow-down-fill ms-2" id="download_music"></i>
       </div>
 
-      <span id="duration">0:00</span>
+      <span>0:00</span>
       <div class="bar">
         <input type="range" id="trol" min="0" max="100">
         <div class="bar2" id="bar2"></div>

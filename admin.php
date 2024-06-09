@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+// jika tidak ada sesion login kembalikan/ redaireq ke halaman login
 if (!isset($_SESSION['login'])) {
   header("Location: index1.php");
   exit;
@@ -156,7 +158,8 @@ if (isset($_POST["bcari"])) {
 
                   <div class="mb-3">
                     <label class="form-label" for="album">Album</label>
-                    <input type="file" class="form-control bg-light shadow-sm bg-body-tertiary rounded" id="album" placeholder="Masukan poster album..." name="album">
+                    <input type="file" onchange="previewImage()" class="album form-control bg-light shadow-sm bg-body-tertiary rounded" id="album" placeholder="Masukan poster album..." name="album">
+                    <img src="img/default.jpeg" style="width: 70px; height: 70px; margin-top: 10px; margin-left: 10px;" alt="" class="img-preview rounded">
                   </div>
 
                   <div class="mb-3">
@@ -281,13 +284,14 @@ if (isset($_POST["bcari"])) {
           </tbody>
         </table>
 
+        <!-- pagination -->
         <ul class="pagination fw-bold">
-          <?php if($halamandigunakan > 1) : ?>
-          <li class="page-item">
-            <a class="page-link" href="?halaman= <?= $halamandigunakan - 1; ?>" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
+          <?php if ($halamandigunakan > 1) : ?>
+            <li class="page-item">
+              <a class="page-link" href="?halaman= <?= $halamandigunakan - 1; ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
           <?php endif; ?>
 
           <?php for ($i = 1; $i <= $jumlahhalaman; $i++) : ?>
@@ -298,12 +302,12 @@ if (isset($_POST["bcari"])) {
             <?php endif; ?>
           <?php endfor; ?>
 
-          <?php if($halamandigunakan < $jumlahhalaman) : ?>
-          <li class="page-item">
-            <a class="page-link" href="?halaman= <?= $halamandigunakan + 1; ?>" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
+          <?php if ($halamandigunakan < $jumlahhalaman) : ?>
+            <li class="page-item">
+              <a class="page-link" href="?halaman= <?= $halamandigunakan + 1; ?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
           <?php endif; ?>
         </ul>
 
